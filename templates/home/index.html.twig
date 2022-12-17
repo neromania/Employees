@@ -4,58 +4,61 @@
 
 {% block body %}
 
-    <div class="example-wrapper">
-        <h1>Page d’accueil</h1>
-
+    <div class="container">
+        <h1 class="d-flex justify-content-center mb-4">Page d’accueil</h1>
         <section>
-            <header>
-                <h2>Qui sommes-nous ?</h2>
-            </header>
+
+                <h3>Qui sommes-nous ?</h3>
+                <p>Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
             <div>
                 <h3>Groupe Alpha</h3>
-                <p>Nous sommes...</p>
+                <p>Lorem pisum dolor sit amet, consectetur adpisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscpit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </section>
+
+        <section>
+
+                <h3 class="d-flex justify-content-center">Communiqués de presse</h3>
+
+                <div class="d-flex justify-content-center">
+                    <p>Date</p>
+                    <p><a href="....pdf">Titre</a></p>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <p>Date</p>
+                    <p><a href="....pdf">Titre</a></p>
+                </div>
+
+        </section>
+
+        <section>
+
+                <h3 class="d-flex justify-content-center">Documents</h3>
+                <div class="d-flex justify-content-center">
+                    <p><a href="#">Rapport annuel</a></p>
+                </div>
+
+        </section>
+
+        <section>
+            <h3 class="d-flex justify-content-center">QR Code</h3>
+
+            <div class="d-flex justify-content-center">
+                <p><img src="#" alt="QR"></p>
             </div>
         </section>
 
         <section>
             <header>
-                <h2>Communiqués de presse</h2>
-                <div>
-                    <p>Date</p>
-                    <p><a href="....pdf">Titre</a></p>
-                </div>
-                <div>
-                    <p>Date</p>
-                    <p><a href="....pdf">Titre</a></p>
+                <h2 class="d-flex justify-content-center">Localisation</h2>
+                <div class="d-flex justify-content-center">
+                    <div style="width: 708px;position: relative;"><iframe width="708" height="444" src="https://maps.google.com/maps?width=708&amp;height=444&amp;hl=en&amp;q=rue%20de%20la%20tulipe%2033+(Alexo)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><div style="position: absolute;width: 80%;bottom: 10px;left: 0;right: 0;margin-left: auto;margin-right: auto;color: #000;text-align: center;"><small style="line-height: 1.8;font-size: 2px;background: #fff;">Powered by <a href="http://www.googlemapsgenerator.com/pt/">Googlemapsgenerator.com/pt/</a> & <a href="https://skattefrittcasino.nu/">skattefrittcasino.nu</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><br />
                 </div>
             </header>
         </section>
 
-        <section>
-            <header>
-                <h2>Documents</h2>
-                <div>
-                    <p><a href="#">Rapport annuel</a></p>
-                </div>
-            </header>
-        </section>
 
-        <section>
-            <header>
-                <h2>Localisation</h2>
-                <div>
-                    <p><iframe src="#"></p>
-                </div>
-            </header>
-        </section>
-
-        <section>
-            <header>
-                <h2>QR Code</h2>
-                <div>
-                    <p><img src="#" alt="QR"></p>
-                </div>
-            </header>
-        </section>
     </div>
 {% endblock %}
