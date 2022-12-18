@@ -6,6 +6,8 @@ use App\Repository\DepartmentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DepartmentRepository::class)]
+#[ORM\Table('departments')]
+
 class Department
 {
     // #[ORM\GeneratedValue]

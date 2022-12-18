@@ -1,17 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DepartmentController!{% endblock %}
+{% block title %}Département{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    {% for department in departments %}
-    <h1>Hello {{ department.dept_name }}! ✅</h1>    
-    {% endfor %}
-    
-</div>
+    <div class="container">
+        <h1 class="d-flex justify-content-center mb-4">Les départements </h1>
+        <ul>
+            {% for department in departments %}
+                <li>{{department.deptName}}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
