@@ -33,8 +33,8 @@
 						<td>{{ employee.photo }}</td>
 						<td>{{ employee.hireDate ? employee.hireDate|date('Y-m-d') : '' }}</td>
 						<td>
-							<a href="{{ path('app_employee_show', {'id': employee.id}) }}">show</a>
-							<a href="{{ path('app_employee_edit', {'id': employee.id}) }}">edit</a>
+							<a href="{{ path('app_employee_show', {'id': employee.id}) }}" class="btn btn-outline-primary">show</a>
+							<a href="{{ path('app_employee_edit', {'id': employee.id}) }}" class="btn btn-outline-primary">edit</a>
 						</td>
 					</tr>
 				{% else %}
@@ -44,8 +44,7 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
-		<a href="{{ path('app_employee_new') }}">Create new</a>
+		<a href="{{ path('app_employee_new') }}" class="btn btn-primary">Create new</a>
 		<div>
 		{% endblock %}
 
