@@ -6,6 +6,8 @@ use App\Repository\EmployeeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 #[ORM\Table('employees')]
 class Employee
@@ -28,6 +30,7 @@ class Employee
     private ?string $lastName = null;
 
     #[ORM\Column(length: 1)]
+    #[Assert\Choice('M','F','X')]
     private ?string $gender = null;
 
     #[ORM\Column(length: 255)]
