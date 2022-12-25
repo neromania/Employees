@@ -14,11 +14,8 @@ class Employee
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'emp_no', type:'integer')]
     private ?int $id = null;
-
-    #[ORM\Column]
-    private ?int $empNo = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthDate = null;
@@ -30,7 +27,7 @@ class Employee
     private ?string $lastName = null;
 
     #[ORM\Column(length: 1)]
-    #[Assert\Choice('M','F','X')]
+    #[Assert\Choice(choices:['M', 'F', 'X'])]
     private ?string $gender = null;
 
     #[ORM\Column(length: 255)]
@@ -41,22 +38,17 @@ class Employee
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $hireDate = null;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->hireDate = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getEmpNo(): ?int
-    {
-        return $this->empNo;
-    }
-
-    public function setEmpNo(int $empNo): self
-    {
-        $this->empNo = $empNo;
-
-        return $this;
     }
 
     public function getBirthDate(): ?\DateTimeInterface
