@@ -15,8 +15,13 @@
 				</tr>
 				<tr>
 					<th>Head department</th>
-					<td>{{ manager.firstname }}
-						{{ manager.lastname }}</td>
+					<td>{{ manager.firstname }} {{ manager.lastname }}</td>
+				</tr>
+				<tr>
+					<th>Team of the department ({{employees | length}} employées dans ce service)</th>
+					{% for employee in employees %}
+						<td>{{ employee.firstname }} {{ employee.lastname }}</td>
+					{% endfor %}
 				</tr>
 				<tr>
 					<th>Description</th>

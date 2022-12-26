@@ -34,9 +34,16 @@ class Department
     #[ORM\ManyToMany(targetEntity: Employee::class, inversedBy: 'departments')]
     private Collection $manager;
 
+    #[ORM\JoinTable(name:'dept_emp')]
+    #[ORM\JoinColumn(name:'dept_no',referencedColumnName:'dept_no')]
+    #[ORM\InverseJoinColumn(name:'emp_no', referencedColumnName:'emp_no')]
+    #[ORM\ManyToMany(targetEntity: Employee::class, inversedBy: 'employeesTab')]
+    private Collection $employees;
+
     public function __construct()
     {
         $this->manager = new ArrayCollection();
+        $this->employees = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -112,6 +119,30 @@ class Department
     public function removeManager(Employee $manager): self
     {
         $this->manager->removeElement($manager);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Employee>
+     */
+    public function getEmployees(): Collection
+    {
+        return $this->employees;
+    }
+
+    public function addEmployee(Employee $employee): self
+    {
+        if (!$this->employees->contains($employee)) {
+            $this->employees->add($employee);
+        }
+
+        return $this;
+    }
+
+    public function removeEmployee(Employee $employee): self
+    {
+        $this->employees->removeElement($employee);
 
         return $this;
     }

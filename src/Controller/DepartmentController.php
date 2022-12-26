@@ -46,19 +46,29 @@ class DepartmentController extends AbstractController
     {
         $managers = $department->getManager();
         $actualManager = null;
-
+        
+        $employees = $department->getEmployees();
+        $actualTeam = [];
+        foreach ($employees as $employee) {
+            $teamates = $employee->getEmployeeHistory();
+            foreach ($teamates as $empl) {
+                if ($empl->getToDate()->format('Y')=="9999" ) {
+                $actualTeam[] = $employee;
+                }
+            }
+        }
         foreach ($managers as $manager) {
            $managings = $manager->getManagerHistory();
-
            foreach ($managings as $managing) {
                 if ($managing->getToDate()->format('Y')=="9999" ) {
                     $actualManager = $manager;
                 }
            }
-        } 
+        }
         return $this->render('department/show.html.twig', [
             'department' => $department,
-            'manager' => $actualManager
+            'manager' => $actualManager,
+            'employees' => $actualTeam
         ]);
     }
 
