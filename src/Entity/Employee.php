@@ -3,13 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
-#[ORM\Table('employees')]
+#[ORM\Table(name: 'employees')]
 class Employee
 {
     #[ORM\Id]
@@ -38,12 +40,22 @@ class Employee
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $hireDate = null;
+
+    #[ORM\ManyToMany(targetEntity: Department::class, mappedBy: 'manager')]
+    #[ORM\JoinColumn(name:'emp_no',referencedColumnName:'emp_no')]
+    private Collection $departments;
+
+    #[ORM\OneToMany(mappedBy: 'employee', targetEntity: DeptManager::class)]
+    #[ORM\JoinColumn(name:'emp_no',referencedColumnName:'emp_no')]
+    private Collection $managerHistory;
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->hireDate = new \DateTimeImmutable();
+        $this->departments = new ArrayCollection();
+        $this->managerHistory = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,6 +143,68 @@ class Employee
     public function setHireDate(\DateTimeInterface $hireDate): self
     {
         $this->hireDate = $hireDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Department>
+     */
+    public function getDepartments(): Collection
+    {
+        return $this->departments;
+    }
+
+    public function addDepartment(Department $department): self
+    {
+        if (!$this->departments->contains($department)) {
+            $this->departments->add($department);
+            $department->addManager($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDepartment(Department $department): self
+    {
+        if ($this->departments->removeElement($department)) {
+            $department->removeManager($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return "{$this->firstName} {$this->lastName}";
+    }
+
+    /**
+     * @return Collection<int, DeptManager>
+     */
+    public function getManagerHistory(): Collection
+    {
+        return $this->managerHistory;
+    }
+
+    public function addManagerHistory(DeptManager $managerHistory): self
+    {
+        if (!$this->managerHistory->contains($managerHistory)) {
+            $this->managerHistory->add($managerHistory);
+            $managerHistory->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeManagerHistory(DeptManager $managerHistory): self
+    {
+        if ($this->managerHistory->removeElement($managerHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($managerHistory->getEmployee() === $this) {
+                $managerHistory->setEmployee(null);
+            }
+        }
 
         return $this;
     }
