@@ -6,6 +6,7 @@ use App\Entity\Department;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class DepartmentType extends AbstractType
 {
@@ -13,7 +14,7 @@ class DepartmentType extends AbstractType
     {
         $builder
             ->add('deptName')
-            ->add('description')
+            ->add('description',TextareaType::class)
             ->add('address')
             ->add('roiUrl')
         ;

@@ -3,9 +3,11 @@
 {% block title %}New Department{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Create new Department</h1>
 
     {{ include('department/_form.html.twig') }}
 
     <a href="{{ path('app_department_index') }}" class="btn btn-primary">back to list</a>
+</div>
 {% endblock %}

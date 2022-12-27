@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Employee;
-use App\Form\Employee1Type;
+use App\Form\EmployeeType;
 use App\Repository\EmployeeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class EmployeeController extends AbstractController
     public function new(Request $request, EmployeeRepository $employeeRepository): Response
     {
         $employee = new Employee();
-        $form = $this->createForm(Employee1Type::class, $employee);
+        $form = $this->createForm(EmployeeType::class, $employee);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +51,7 @@ class EmployeeController extends AbstractController
     #[Route('/{id}/edit', name: 'app_employee_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Employee $employee, EmployeeRepository $employeeRepository): Response
     {
-        $form = $this->createForm(Employee1Type::class, $employee);
+        $form = $this->createForm(EmployeeType::class, $employee);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
