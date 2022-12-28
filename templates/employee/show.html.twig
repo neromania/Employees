@@ -8,35 +8,43 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th class="table-primary">Id</th>
                 <td>{{ employee.id }}</td>
             </tr>
             <tr>
-                <th>BirthDate</th>
+                <th class="table-active">Birth date</th>
                 <td>{{ employee.birthDate ? employee.birthDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>FirstName</th>
+                <th class="table-primary">Firstname</th>
                 <td>{{ employee.firstName }}</td>
             </tr>
             <tr>
-                <th>LastName</th>
+                <th class="table-active">Lastname</th>
                 <td>{{ employee.lastName }}</td>
             </tr>
             <tr>
-                <th>Gender</th>
+                <th class="table-primary">Gender</th>
                 <td>{{ employee.gender }}</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th class="table-active">Email</th>
                 <td>{{ employee.email }}</td>
             </tr>
             <tr>
-                <th>Photo</th>
+                <th class="table-primary">Photo</th>
                 <td>{{ employee.photo }}</td>
             </tr>
+             <tr>
+                <th class="table-active">Demands</th>
+                <td>
+                {% for demand in employee.demands %}
+                    <p>{{ demand.type }} {{ demand.about }} {{ demand.status is null  ? 'En attente' : (demand.status==1 ? 'Acceptée' : 'Refusée' )}}</p>
+                {% endfor %}
+                </td>
+            </tr>
             <tr>
-                <th>HireDate</th>
+                <th class="table-primary">Hire date</th>
                 <td>{{ employee.hireDate ? employee.hireDate|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>

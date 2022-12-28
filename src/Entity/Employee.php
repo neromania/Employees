@@ -53,6 +53,9 @@ class Employee
     #[ORM\JoinColumn(name:'emp_no',referencedColumnName:'emp_no')]
     private Collection $employeeHistory;
 
+    #[ORM\OneToMany(mappedBy: 'employee', targetEntity: Demand::class)]
+    private Collection $demands;
+
     /**
      * Constructor
      */
@@ -62,6 +65,7 @@ class Employee
         $this->departments = new ArrayCollection();
         $this->managerHistory = new ArrayCollection();
         $this->employeeHistory = new ArrayCollection();
+        $this->demands = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -239,6 +243,36 @@ class Employee
             // set the owning side to null (unless already changed)
             if ($employeeHistory->getEmployee() === $this) {
                 $employeeHistory->setEmployee(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Demand>
+     */
+    public function getDemands(): Collection
+    {
+        return $this->demands;
+    }
+
+    public function addDemand(Demand $demand): self
+    {
+        if (!$this->demands->contains($demand)) {
+            $this->demands->add($demand);
+            $demand->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemand(Demand $demand): self
+    {
+        if ($this->demands->removeElement($demand)) {
+            // set the owning side to null (unless already changed)
+            if ($demand->getEmployee() === $this) {
+                $demand->setEmployee(null);
             }
         }
 
