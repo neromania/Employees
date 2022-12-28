@@ -5,14 +5,14 @@
 
 {% block body %}
 	<div class="container mt-4">
-		<h1>Employee index</h1>
+		<h1>List of all employees</h1>
 {% for message in app.flashes('success') %}
     <div class="alert alert-dismissible alert-success">
         {{ message }}
     </div>
 {% endfor %}
 		<table class="table">
-			<thead>
+			<thead  class="table-info">
 				<tr>
 					<th>Id</th>
 					<th>BirthDate</th>
@@ -37,8 +37,8 @@
 						<td>{{ employee.photo }}</td>
 						<td>{{ employee.hireDate ? employee.hireDate|date('Y-m-d') : '' }}</td>
 						<td>
-							<a href="{{ path('app_employee_show', {'id': employee.id}) }}" class="btn btn-outline-primary">show</a>
-							<a href="{{ path('app_employee_edit', {'id': employee.id}) }}" class="btn btn-outline-primary">edit</a>
+							<a href="{{ path('app_employee_show', {'id': employee.id}) }}" class="btn btn-outline-info btn-sm">show</a>
+							<a href="{{ path('app_employee_edit', {'id': employee.id}) }}" class="btn btn-outline-dark btn-sm">edit</a>
 						</td>
 					</tr>
 				{% else %}

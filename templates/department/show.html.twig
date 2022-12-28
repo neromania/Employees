@@ -15,7 +15,7 @@
 				</tr>
 				<tr>
 					<th class="table-active">Head department</th>
-					<td>{{ manager.firstname }} {{ manager.lastname }}</td>
+					<td>{{ manager is not null ? manager : ''}}</td>
 				</tr>
 				<tr>
 					<th class="table-primary">Team of the department <span class="badge bg-primary rounded-pill "> {{employees | length}}</span></th>
@@ -32,13 +32,13 @@
 					<td>{{ department.address }}</td>
 				</tr>
 				<tr>
-					<th class="table-active">RoiUrl</th>
+					<th class="table-active">Roi Url</th>
 					<td>{{ department.roiUrl }}</td>
 				</tr>
 			</tbody>
 		</table>
 
-		<a href="{{ path('app_department_index') }}" class="btn btn-secondary">back to list</a>
+		<a href="{{ path('app_department_index')  }}" class="btn btn-secondary">back to list</a>
 
 		<a href="{{ path('app_department_edit', {'id': department.id}) }}" class="btn btn-dark">edit</a>
 		<div class="container mt-4">

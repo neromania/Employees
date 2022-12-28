@@ -62,7 +62,7 @@ class DepartmentController extends AbstractController
         foreach ($managers as $manager) {
            $managings = $manager->getManagerHistory();
            foreach ($managings as $managing) {
-                if ($managing->getToDate()->format('Y')=="9999" ) {
+                if ($managing->getToDate()->format('Y')=="9999" && $managing->getToDate()->format('Y') >= date('Y') && $managing->getDeptNo() == $department->getId()) {
                     $actualManager = $manager;
                 }
            }
