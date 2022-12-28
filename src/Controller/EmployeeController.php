@@ -56,7 +56,10 @@ class EmployeeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $employeeRepository->save($employee, true);
-
+            $this->addFlash(
+                'success',
+                'new employee added with success!'
+            );
             return $this->redirectToRoute('app_employee_index', [], Response::HTTP_SEE_OTHER);
         }
 

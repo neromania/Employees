@@ -7,16 +7,36 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class DepartmentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('deptName')
-            ->add('description',TextareaType::class)
-            ->add('address')
-            ->add('roiUrl')
+            ->add('deptName', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'label' => 'Name of the department'
+            ])
+            ->add('description',TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('address', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('roiUrl', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'label' => 'ROI url of the department',
+                'required' => false
+            ])
         ;
     }
 

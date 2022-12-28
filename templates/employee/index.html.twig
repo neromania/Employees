@@ -6,7 +6,11 @@
 {% block body %}
 	<div class="container mt-4">
 		<h1>Employee index</h1>
-
+{% for message in app.flashes('success') %}
+    <div class="alert alert-dismissible alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
 		<table class="table">
 			<thead>
 				<tr>

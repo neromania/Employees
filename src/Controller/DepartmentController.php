@@ -40,15 +40,14 @@ class DepartmentController extends AbstractController
             'form' => $form,
         ]);
     }
-
+ 
     #[Route('/{id}', name: 'app_department_show', methods: ['GET'])]
     public function show(Department $department): Response
     {
-        $managers = $department->getManager();
-        $actualManager = null;
-        
+
         $employees = $department->getEmployees();
         $actualTeam = [];
+
         foreach ($employees as $employee) {
             $teamates = $employee->getEmployeeHistory();
             foreach ($teamates as $empl) {
@@ -57,6 +56,9 @@ class DepartmentController extends AbstractController
                 }
             }
         }
+        $managers = $department->getManager();
+        $actualManager = null;
+
         foreach ($managers as $manager) {
            $managings = $manager->getManagerHistory();
            foreach ($managings as $managing) {

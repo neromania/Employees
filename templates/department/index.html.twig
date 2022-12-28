@@ -10,10 +10,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>DeptName</th>
+                <th>Department</th>
                 <th>Description</th>
                 <th>Address</th>
-                <th>RoiUrl</th>
+                <th>Roi Url</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,13 +22,13 @@
             <tr>
                 <td>{{ department.id }}</td>
                 <td>{{ department.deptName }}</td>
-                <td>{{ department.description }}</td>
+                <td>{{ department.description|u.truncate(60, '...', false) }}</td>
                 <td>{{ department.address }}</td>
                 <td>{{ department.roiUrl }}</td>
-                <td>
-                    <a href="{{ path('app_department_show', {'id': department.id}) }}">show</a>
-                    <a href="{{ path('app_department_edit', {'id': department.id}) }}">edit</a>
-                </td>
+                <div><td>
+                    <a href="{{ path('app_department_show', {'id': department.id}) }}" class="btn btn-outline-info btn-sm">show</a>
+                    <a href="{{ path('app_department_edit', {'id': department.id}) }}" class="btn btn-outline-dark btn-sm">edit</a>
+                </td><div>
             </tr>
         {% else %}
             <tr>
@@ -37,7 +37,6 @@
         {% endfor %}
         </tbody>
     </table>
-
     <a href="{{ path('app_department_new') }}" class="btn btn-primary">Create new</a>
 </div>
 {% endblock %}
