@@ -10,29 +10,29 @@
 		<table class="table">
 			<tbody>
 				<tr>
-					<th>Id</th>
+					<th class="table-primary">Id</th>
 					<td>{{ department.id }}</td>
 				</tr>
 				<tr>
-					<th>Head department</th>
+					<th class="table-active">Head department</th>
 					<td>{{ manager.firstname }} {{ manager.lastname }}</td>
 				</tr>
 				<tr>
-					<th>Team of the department ({{employees | length}} employées dans ce service)</th>
-					{% for employee in employees %}
-						<td>{{ employee.firstname }} {{ employee.lastname }}</td>
-					{% endfor %}
+					<th class="table-primary">Team of the department <span class="badge bg-primary rounded-pill "> {{employees | length}}</span></th>
+					<td><ul>{% for employee in employees %}
+						<li>{{ employee.firstname }} {{ employee.lastname }}</li>
+					{% endfor %}</ul></td>
 				</tr>
 				<tr>
-					<th>Description</th>
+					<th class="table-active">Description</th>
 					<td>{{ department.description }}</td>
 				</tr>
 				<tr>
-					<th>Address</th>
+					<th class="table-primary">Address</th>
 					<td>{{ department.address }}</td>
 				</tr>
 				<tr>
-					<th>RoiUrl</th>
+					<th class="table-active">RoiUrl</th>
 					<td>{{ department.roiUrl }}</td>
 				</tr>
 			</tbody>
