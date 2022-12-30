@@ -4,9 +4,24 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="container mt-4">
         <h1 class="d-flex justify-content-center mb-4">Les départements </h1>
 
+        <h3>Nos différents départements </h3>
+
+        {% for department in departments %}
+           <ul>
+
+             {# {{ dump(department) }} #}
+               <a href="{{ path('department.show', {"deptNo": department.deptNo}) }}" type="button" class="btn btn-primary" >
+                   {{ department.deptName }}
+               </a>
+
+
+           </ul>
+        {% endfor %}
 
     </div>
+
 {% endblock %}
+
