@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <th class="table-active">Birth date</th>
-                <td>{{ employee.birthDate ? employee.birthDate|date('Y-m-d') : '' }}</td>
+                <td>{{ employee.birthDate|date('d-m-Y') }}</td>
             </tr>
             <tr>
                 <th class="table-primary">Firstname</th>
@@ -31,12 +31,18 @@
                 <th class="table-active">Email</th>
                 <td>{{ employee.email }}</td>
             </tr>
-            <tr>
+             <tr>
                 <th class="table-primary">Photo</th>
                 <td>{{ employee.photo }}</td>
             </tr>
+            <tr>
+                <th class="table-active">Salary</th>
+               <td>{% for salary in employee.salaries %}
+                <p><em>{{ salary.salary|format_currency('EUR', locale='be') }}</em> (du {{ salary.fromDate|date("m/d/Y") }} au {{ salary.toDate|date("m/d/Y") }})</p>   
+                {% endfor %}</td> 
+                </tr>
              <tr>
-                <th class="table-active">Demands</th>
+                <th class="table-primary">Demands</th>
                 <td>
                 {% for demand in employee.demands %}
                     <p>{{ demand.type }} {{ demand.about }} {{ demand.status is null  ? 'En attente' : (demand.status==1 ? 'Acceptée' : 'Refusée' )}}</p>
@@ -44,8 +50,8 @@
                 </td>
             </tr>
             <tr>
-                <th class="table-primary">Hire date</th>
-                <td>{{ employee.hireDate ? employee.hireDate|date('Y-m-d') : '' }}</td>
+                <th class="table-active">Hire date</th>
+                <td>{{employee.hireDate|date('d-m-Y')}}</td>
             </tr>
         </tbody>
     </table>
