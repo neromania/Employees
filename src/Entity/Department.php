@@ -40,10 +40,17 @@ class Department
     #[ORM\ManyToMany(targetEntity: Employee::class, inversedBy: 'employeesTab')]
     private Collection $employees;
 
+    #[ORM\JoinTable(name:'dept_title')]
+    #[ORM\JoinColumn(name:'dept_no',referencedColumnName:'dept_no')]
+    #[ORM\InverseJoinColumn(name:'title_no', referencedColumnName:'title_no')]
+    #[ORM\ManyToMany(targetEntity: Title::class, mappedBy: 'departments')]
+    private Collection $titles;
+
     public function __construct()
     {
         $this->manager = new ArrayCollection();
         $this->employees = new ArrayCollection();
+        $this->titles = new ArrayCollection();
     }
 
     public function getId(): ?string
@@ -147,4 +154,35 @@ class Department
         return $this;
     }
 
+    /**
+     * @return Collection<int, Title>
+     */
+    public function getTitles(): Collection
+    {
+        return $this->titles;
+    }
+
+    public function addTitle(Title $title): self
+    {
+        if (!$this->titles->contains($title)) {
+            $this->titles->add($title);
+            $title->addDepartment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTitle(Title $title): self
+    {
+        if ($this->titles->removeElement($title)) {
+            $title->removeDepartment($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return "{$this->getDeptName()}";
+    }
 }
