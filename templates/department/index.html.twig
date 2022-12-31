@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ department.id }}</td>
                 <td>{{ department.deptName }}</td>
-                <td>{{ department.description|u.truncate(60, '...', false) }}</td>
+                <td>{{ department.description|u.truncate(65, '...', false) }}</td>
                 <td>{{ department.address }}</td>
                 <td>{{ department.roiUrl }}</td>
                 <td>{{ department.titles|length == 0 ? '' : department.titles|length  }}</td>

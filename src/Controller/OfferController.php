@@ -21,8 +21,6 @@ class OfferController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/new', name: 'app_offer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TitleRepository $titleRepository): Response
     {
