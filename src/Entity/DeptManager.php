@@ -29,11 +29,6 @@ class DeptManager
     #[ORM\JoinColumn(name:'emp_no',referencedColumnName:'emp_no', nullable:false)]
     private ?Employee $employee = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getEmpNo(): ?int
     {
         return $this->empNo;

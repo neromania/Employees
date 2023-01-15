@@ -34,10 +34,6 @@ class Title
         $this->departments = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getTitleNo(): ?int
     {
