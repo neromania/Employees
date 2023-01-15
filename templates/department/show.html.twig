@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Department
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Department
+			{{ department.deptName }}</h1>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th class="table-primary">Id</th>
+					<td>{{ department.id }}</td>
+				</tr>
+				<tr>
+					<th class="table-active">Head department</th>
+					<td>{{ manager is not null ? manager : ''}}</td>
+				</tr>
+				<tr>
+					<th class="table-primary">Team of the department <span class="badge bg-primary rounded-pill "> {{employees | length}}</span></th>
+					<td><ul>{% for employee in employees %}
+						<li>{{ employee.firstname }} {{ employee.lastname }}</li>
+					{% endfor %}</ul></td>
+				</tr>
+				<tr>
+					<th class="table-active">Description</th>
+					<td>{{ department.description }}</td>
+				</tr>
+				<tr>
+					<th class="table-primary">Address</th>
+					<td>{{ department.address }}</td>
+				</tr>
+				<tr>
+					<th class="table-active">Roi Url</th>
+					<td>{{ department.roiUrl }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_department_index')  }}" class="btn btn-secondary">back to list</a>
+
+		<a href="{{ path('app_department_edit', {'id': department.id}) }}" class="btn btn-dark">edit</a>
+		<div class="container mt-4">
+			{{ include('department/_delete_form.html.twig') }}
+		</div>
+	<div>
+{% endblock %}
+

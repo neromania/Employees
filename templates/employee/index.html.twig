@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee index
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>List of all employees</h1>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-dismissible alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+		<table class="table">
+			<thead  class="table-info">
+				<tr>
+					<th>Id</th>
+					<th>BirthDate</th>
+					<th>FirstName</th>
+					<th>LastName</th>
+					<th>Gender</th>
+					<th>Email</th>
+					<th>Photo</th>
+					<th>HireDate</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for employee in employees %}
+					<tr>
+						<td>{{ employee.id }}</td>
+						<td>{{ employee.birthDate ? employee.birthDate|date('Y-m-d') : '' }}</td>
+						<td>{{ employee.firstName }}</td>
+						<td>{{ employee.lastName }}</td>
+						<td>{{ employee.gender }}</td>
+						<td>{{ employee.email }}</td>
+						<td>{{ employee.photo }}</td>
+						<td>{{ employee.hireDate ? employee.hireDate|date('Y-m-d') : '' }}</td>
+						<td>
+							<a href="{{ path('app_employee_show', {'id': employee.id}) }}" class="btn btn-outline-info btn-sm">show</a>
+							<a href="{{ path('app_employee_edit', {'id': employee.id}) }}" class="btn btn-outline-dark btn-sm">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="9">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="{{ path('app_employee_new') }}" class="btn btn-primary">Create new</a>
+		<div>
+		{% endblock %}
+

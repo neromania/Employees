@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Title index
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Job offers</h1>
+
+		<table class="table">
+			<thead class="table-primary">
+				<tr>
+					<th>Jobs</th>
+					<th>departments</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for title in titles %}
+						{% for job in title.departments %}
+						<tr>
+                            <td>
+								<p>{{ title.title }}</p>
+							</td>
+							<td>
+								<p>{{ job }}</p>
+							</td>
+							<td>
+								<a href="{{ path('app_employee_new') }}">Apply</a>
+							</td>
+                        </tr>    
+						{% endfor %}
+				{% else %}
+					<tr>
+						<td colspan="4">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
+

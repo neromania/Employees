@@ -1,0 +1,68 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Portail d'entreprise - Accueil
+{% endblock %}
+{% block javascripts %}
+<script type="module" src="https://geogratis.gc.ca/mapml/client/web-map/mapml-viewer.js" crossorigin></script>
+{% endblock %}
+{% block body %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container mt-4">
+			<h1 class="display-4">Welcome to EPFC</h1>
+			<p class="lead">The EPFC company portal</p>
+			<section class="container mt-4">
+				<h2>Qui somme-nous ?</h2>
+				<p>Nullam quis risus eget
+					<a href="#">urna mollis ornare</a>
+					vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+				<p>
+					<small>This line of text is meant to be treated as fine print.</small>
+				</p>
+				<p>The following is
+					<strong>rendered as bold text</strong>.</p>
+				<p>The following is
+					<em>rendered as italicized text</em>.</p>
+				<p>An abbreviation of the word attribute is
+					<abbr title="attribute">attr</abbr>.</p>
+			</section>
+			<section class="container mt-4">
+				<h2>Communiqués de presse</h2>
+				<a href="#">Liste de liens vers des PDFs d’articles de journaux sur l’entreprise</a>
+				<p>vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+				<p>
+					<small>This line of text is meant to be treated as fine print.</small>
+				</p>
+				<p>The following is
+					<strong>rendered as bold text</strong>.</p>
+				<p>The following is
+					<em>rendered as italicized text</em>.</p>
+				<p>An abbreviation of the word attribute is
+					<abbr title="attribute">attr</abbr>.</p>
+			</section>
+			<section class="container mt-4">
+				<h2>Documents</h2>
+				<p>Nullam quis risus eget
+					<a href="#">Télécharger le dernier rapport annuel</a>
+					vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+				<p>
+					<small>This line of text is meant to be treated as fine print.</small>
+				</p>
+				<p>The following is
+					<strong>rendered as bold text</strong>.</p>
+				<p>The following is
+					<em>rendered as italicized text</em>.</p>
+				<p>An abbreviation of the word attribute is
+					<abbr title="attribute">attr</abbr>.</p>
+			</section>
+      <section class="container mt-4">
+				<h2>Localisation du siège de la société sur une carte</h2>
+				<div class="map">
+        <mapml-viewer projection="OSMTILE" zoom="0" lat="0.0" lon="0.0" controls>
+         <layer- label="OpenStreetMap" src="https://geogratis.gc.ca/mapml/en/osmtile/osm/" checked="checked" hidden="hidden"></layer->
+         <layer- label="OpenStreetMap" src="https://geogratis.gc.ca/mapml/en/osmtile/osm/" checked="checked"></layer->
+      </mapml-viewer>
+				</div>
+			</section>
+		</div>
+	{% endblock %}
+

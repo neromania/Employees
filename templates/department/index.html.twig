@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Department index{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Departments list</h1>
+
+    <table class="table">
+        <thead class="table-primary">
+            <tr>
+                <th>Id</th>
+                <th>Department</th>
+                <th>Description</th>
+                <th>Address</th>
+                <th>Roi Url</th>
+                <th>Offers</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for department in departments %}
+            <tr>
+                <td>{{ department.id }}</td>
+                <td>{{ department.deptName }}</td>
+                <td>{{ department.description|u.truncate(65, '...', false) }}</td>
+                <td>{{ department.address }}</td>
+                <td>{{ department.roiUrl }}</td>
+                <td>{{ department.titles|length == 0 ? '' : department.titles|length  }}</td>
+                <div><td>
+                    <a href="{{ path('app_department_show', {'id': department.id}) }}" class="btn btn-outline-info btn-sm">show</a>
+                    <a href="{{ path('app_department_edit', {'id': department.id}) }}" class="btn btn-outline-dark btn-sm">edit</a>
+                </td><div>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_department_new') }}" class="btn btn-primary">Create new</a>
+</div>
+{% endblock %}
