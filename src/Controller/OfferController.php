@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Title;
 use App\Form\TitleType;
+use App\Form\OfferType;
 use App\Repository\TitleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,4 +76,14 @@ class OfferController extends AbstractController
 
         return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/apply', name: 'app_offer_apply', methods: ['GET', 'POST'])]
+    public function form(): Response
+    {
+        $form = $this->createForm(OfferType::class);
+        return $this->render('offer/_form.html.twig', [
+            'form' => $form,
+        ]);
+    }
+    
 }
