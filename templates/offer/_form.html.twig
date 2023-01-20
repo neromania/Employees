@@ -1,3 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% block title %}<h1 class="apply">Apply for a new post</h1>{% endblock %}
+<div class="form-group .row">
 {{ form_start(form) }}
     {{ form_widget(form) }}
 {{ form_end(form) }}
+</div> 
+{% endblock %}
