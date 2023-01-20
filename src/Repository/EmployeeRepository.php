@@ -39,6 +39,16 @@ class EmployeeRepository extends ServiceEntityRepository
         }
     }
 
+    public function findWomen()
+    {
+        $qb = $this->createQueryBuilder('e')
+        ->where('gender=F');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 
 
 //    /**
