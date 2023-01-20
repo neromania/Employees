@@ -4,36 +4,37 @@
 
 {% block body %}
     <h1>Demand index</h1>
+    <div class="container mt-4">
+        <table class="table">
+            <thead class="table-primary">
+                <tr>
+                    <th>Id</th>
+                    <th>Type</th>
+                    <th>About</th>
+                    <th>Status</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for demand in demands %}
+                <tr>
+                    <td>{{ demand.id }}</td>
+                    <td>{{ demand.type }}</td>
+                    <td>{{ demand.about }}</td>
+                    <td>{{ demand.status is null ? 'En attente': (demand.status==1 ? 'Acceptée':'Refusée')}}</td>
+                    <td>
+                        <a href="{{ path('app_demand_show', {'id': demand.id}) }}" class="btn btn-outline-info btn-sm">show</a>
+                        <a href="{{ path('app_demand_edit', {'id': demand.id}) }}" class="btn btn-outline-dark btn-sm">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th>About</th>
-                <th>Status</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for demand in demands %}
-            <tr>
-                <td>{{ demand.id }}</td>
-                <td>{{ demand.type }}</td>
-                <td>{{ demand.about }}</td>
-                <td>{{ demand.status ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_demand_show', {'id': demand.id}) }}">show</a>
-                    <a href="{{ path('app_demand_edit', {'id': demand.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_demand_new') }}">Create new</a>
+        <a href="{{ path('app_demand_new') }}" class="btn btn-primary">Create new</a>
+    </div>    
 {% endblock %}

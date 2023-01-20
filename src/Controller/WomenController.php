@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Employee;
+use App\Repository\EmployeeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +32,21 @@ class WomenController extends AbstractController
             'controller_name' => 'WomenController',
         ]);
     }
+
+    /*public function findWomen(EmployeeRepository $employeeRepository): Response
+    {
+        $conn = DriverManager::getConnection($params, $config);
+
+        $sql = '
+            SELECT * FROM employees
+            WHERE gender = F
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+    }*/
     /*#[Route('/all', name: 'app_women_all')]
     private $doctrine;
     public function __construct(ManagerRegistry $doctrine)
