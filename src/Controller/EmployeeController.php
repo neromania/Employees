@@ -40,12 +40,6 @@ class EmployeeController extends AbstractController
         ]);
     }
 
-    #[Route('/women', name: 'app_employee_women', methods: ['GET'])]
-    public function women()
-    {
-        $women = $this->findWomen();
-    }
-
 
     #[Route('/{id}', name: 'app_employee_show', methods: ['GET'])]
     public function show(Employee $employee): Response

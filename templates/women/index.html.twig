@@ -58,13 +58,14 @@
   new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ['Femmes', 'Hommes'],
+      labels: ['Femmes', 'Hommes','Autres'],
       datasets: [{
         label: 'Nombre total',
-        data: [12, 19],
+        data: [{{womens|length}},{{mens|length}},{{other|length}}],
         backgroundColor: [
             'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)'
+            'rgb(54, 162, 235)',
+            'rgb(157, 262, 345)'
         ],
       }]
     },

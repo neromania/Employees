@@ -25,11 +25,22 @@ class WomenController extends AbstractController
         ]);
     }*/
         
-    #[Route('/women', name: 'app_women')]
-    public function index(): Response
+    #[Route('/women', name: 'app_employee_women', methods: ['GET'])]
+    public function women(EmployeeRepository $repo) : Response
     {
+        $all = $repo->findAll();
+        $womens = $repo->findBy(['gender'=>'F']); 
+        $mens = $repo->findBy(['gender'=>'M']);
+        $other = $repo->findBy(['gender'=>'X']);
+        foreach ($all as $one) {
+           $dept[] = $one->getDepartments();
+        }
         return $this->render('women/index.html.twig', [
-            'controller_name' => 'WomenController',
+            'womens' => $womens,
+            'mens' => $mens,
+            'other' => $other,
+            'department' => $dept
+
         ]);
     }
 
