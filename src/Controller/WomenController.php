@@ -31,7 +31,7 @@ class WomenController extends AbstractController
         $all = $repo->findAll();
         $womens = $repo->findBy(['gender'=>'F']); 
         $mens = $repo->findBy(['gender'=>'M']);
-        $other = $repo->findBy(['gender'=>'X']);
+        $other = $repo->findBy(['gender'=>'']);
         foreach ($all as $one) {
            $dept[] = $one->getDepartments();
         }
