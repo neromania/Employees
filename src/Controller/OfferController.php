@@ -43,18 +43,6 @@ class OfferController extends AbstractController
 
     #[Route('/apply', name: 'app_offer_apply', methods: ['GET', 'POST'])]
     public function form(): Response
-<<<<<<< HEAD
-=======
-    {
-        $form = $this->createForm(OfferType::class);
-        return $this->render('offer/_form.html.twig', [
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{titleNo}', name: 'app_offer_show', methods: ['GET'])]
-    public function show(Title $title): Response
->>>>>>> e8f583a1f16d836324a585eff9c10961b1dec485
     {
         $form = $this->createForm(OfferType::class);
         return $this->render('offer/_form.html.twig', [
@@ -89,9 +77,4 @@ class OfferController extends AbstractController
 
         return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> e8f583a1f16d836324a585eff9c10961b1dec485
-    
 }
