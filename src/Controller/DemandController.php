@@ -5,15 +5,18 @@ namespace App\Controller;
 use App\Entity\Demand;
 use App\Form\DemandType;
 use App\Repository\DemandRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/demand')]
+
 class DemandController extends AbstractController
 {
     #[Route('/', name: 'app_demand_index', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(DemandRepository $demandRepository): Response
     {
         return $this->render('demand/index.html.twig', [
@@ -41,6 +44,7 @@ class DemandController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_demand_show', methods: ['GET'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function show(Demand $demand): Response
     {
         return $this->render('demand/show.html.twig', [

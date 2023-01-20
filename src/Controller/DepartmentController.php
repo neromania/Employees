@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Department;
 use App\Form\DepartmentType;
 use App\Repository\DepartmentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/department')]
 class DepartmentController extends AbstractController
@@ -23,6 +24,7 @@ class DepartmentController extends AbstractController
     }
 
     #[Route('/new', name: 'app_department_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, DepartmentRepository $departmentRepository): Response
     {
         $department = new Department();
@@ -75,6 +77,7 @@ class DepartmentController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_department_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Department $department, DepartmentRepository $departmentRepository): Response
     {
         $form = $this->createForm(DepartmentType::class, $department);
@@ -93,6 +96,7 @@ class DepartmentController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_department_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Department $department, DepartmentRepository $departmentRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$department->getId(), $request->request->get('_token'))) {
